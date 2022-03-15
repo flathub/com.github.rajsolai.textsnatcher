@@ -47,10 +47,9 @@ modules:
   - name: com.github.rajsolai.textsnatcher
     buildsystem: meson
     sources:
-      - type: dir
-        #url: https://github.com/RajSolai/TextSnatcher/archive/refs/tags/v1.0.1.tar.gz
-        #sha256: 29d39bcf4b0ed0b16f932cfd5553a280907df75d8332979f6504e7946ed5c356
-        path: .
+      - type: archive
+        url: https://github.com/RajSolai/TextSnatcher/archive/refs/tags/v2.0.0.tar.gz
+        sha256: 0467a720b96ddfcdef822d7ed794d9ad3973fc39223851b4a82ba2de7715f220
 
   - name: leptonica
     rm-configure: true
