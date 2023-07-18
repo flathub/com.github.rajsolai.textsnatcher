@@ -1,9 +1,9 @@
 app-id: com.github.rajsolai.textsnatcher
 
 runtime: org.gnome.Platform
-runtime-version: "41"
+runtime-version: "44"
 base: io.elementary.BaseApp
-base-version: "juno-21.08"
+base-version: "juno-22.08"
 sdk: org.gnome.Sdk
 command: com.github.rajsolai.textsnatcher
 
@@ -103,7 +103,7 @@ modules:
         dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/nld.traineddata
-        sha256: 92e7a1ad4bf8082e268de57c7823316ec024935702c6ed2a1e473b3a071aa733 
+        sha256: 92e7a1ad4bf8082e268de57c7823316ec024935702c6ed2a1e473b3a071aa733
         dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/deu.traineddata
