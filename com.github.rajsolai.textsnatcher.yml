@@ -29,8 +29,8 @@ modules:
       - name: libmd
         sources:
           - type: archive
-            url: https://libbsd.freedesktop.org/releases/libmd-1.1.0.tar.xz
-            sha256: 1bd6aa42275313af3141c7cf2e5b964e8b1fd488025caf2f971f43b00776b332
+            url: https://libbsd.freedesktop.org/releases/libmd-1.2.0.tar.xz
+            sha256: ac15ffb8430502fbaccdec66c5a82ee0eab0b0f36220df56710feadfeb13d0a0
             x-checker-data:
               type: anitya
               project-id: 15525
@@ -47,8 +47,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar-gzip
-        url: https://api.github.com/repos/resurrecting-open-source-projects/scrot/tarball/1.12.1
-        sha256: b4087954fa19f2adf16e90f6d3ba6c20ae41000591501933b82a2ce7d2c23cfa
+        url: https://api.github.com/repos/resurrecting-open-source-projects/scrot/tarball/2.0.0
+        sha256: 1cedbb9a6fb8a2aec3a7f35764db74acc1ea477e22e3cb5b8070ca278e34c83b
         x-checker-data:
           type: json
           url: https://api.github.com/repos/resurrecting-open-source-projects/scrot/releases/latest
@@ -64,8 +64,8 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://github.com/flatpak/libportal/archive/0.9.1.tar.gz
-        sha256: ea422b789ae487e04194d387bea031fd7485bf88a18aef8c767f7d1c29496a4e
+        url: https://github.com/flatpak/libportal/archive/0.10.0.tar.gz
+        sha256: e1b6913c6d9015bfa918ace86f82c30940982add97aed9c18cc929c5327054fd
         x-checker-data:
           type: anitya
           project-id: 230124
@@ -95,8 +95,8 @@ modules:
       - --enable-legacy
     sources:
       - type: archive
-        url: https://github.com/tesseract-ocr/tesseract/archive/5.5.1.tar.gz
-        sha256: a7a3f2a7420cb6a6a94d80c24163e183cf1d2f1bed2df3bbc397c81808a57237
+        url: https://github.com/tesseract-ocr/tesseract/archive/5.5.2.tar.gz
+        sha256: 6235ea0dae45ea137f59c09320406f5888383741924d98855bd2ce0d16b54f21
         x-checker-data:
           type: anitya
           project-id: 4954
