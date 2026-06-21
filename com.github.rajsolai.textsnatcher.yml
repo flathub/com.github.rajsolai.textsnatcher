@@ -38,10 +38,15 @@ modules:
               url-template: https://libbsd.freedesktop.org/releases/libmd-$version.tar.xz
 
   - name: imlib2
+    buildsystem: autotools
     sources:
-      - type: git
-        url: https://github.com/kkoudev/imlib2.git
-        commit: 0f6782427dd4f49a4d1da03bec133e6a27f994a3
+      - type: archive
+        url: https://downloads.sourceforge.net/project/enlightenment/imlib2-src/1.12.6/imlib2-1.12.6.tar.gz
+        sha256: 59743ce82aefa9c1ec9476af608d541b74164714d2928fbd84ff5db6c4399079
+        x-checker-data:
+          type: anitya
+          project-id: 21676
+          url-template: https://downloads.sourceforge.net/project/enlightenment/imlib2-src/$version/imlib2-$version.tar.gz
 
   - name: scrot
     sources:
