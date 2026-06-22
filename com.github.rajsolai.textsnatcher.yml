@@ -1,12 +1,10 @@
-app-id: com.github.rajsolai.textsnatcher
-
+id: com.github.rajsolai.textsnatcher
 runtime: org.gnome.Platform
-runtime-version: '49'
+runtime-version: '50'
 base: io.elementary.BaseApp
 base-version: circe-25.08
 sdk: org.gnome.Sdk
 command: com.github.rajsolai.textsnatcher
-
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
@@ -15,6 +13,19 @@ finish-args:
   - --system-talk-name=org.freedesktop.Accounts
 
 modules:
+
+  # Dependency of libbsd
+  - name: libmd
+    sources:
+      - type: archive
+        url: https://libbsd.freedesktop.org/releases/libmd-1.2.0.tar.xz
+        sha256: ac15ffb8430502fbaccdec66c5a82ee0eab0b0f36220df56710feadfeb13d0a0
+        x-checker-data:
+          type: anitya
+          project-id: 15525
+          stable-only: true
+          url-template: https://libbsd.freedesktop.org/releases/libmd-$version.tar.xz
+
   - name: libbsd
     sources:
       - type: archive
@@ -25,17 +36,6 @@ modules:
           project-id: 1567
           stable-only: true
           url-template: https://libbsd.freedesktop.org/releases/libbsd-$version.tar.xz
-    modules:
-      - name: libmd
-        sources:
-          - type: archive
-            url: https://libbsd.freedesktop.org/releases/libmd-1.2.0.tar.xz
-            sha256: ac15ffb8430502fbaccdec66c5a82ee0eab0b0f36220df56710feadfeb13d0a0
-            x-checker-data:
-              type: anitya
-              project-id: 15525
-              stable-only: true
-              url-template: https://libbsd.freedesktop.org/releases/libmd-$version.tar.xz
 
   - name: imlib2
     buildsystem: autotools
@@ -59,30 +59,6 @@ modules:
           url: https://api.github.com/repos/resurrecting-open-source-projects/scrot/releases/latest
           version-query: .tag_name
           url-query: .tarball_url
-
-  - name: libportal
-    buildsystem: meson
-    builddir: true
-    config-opts:
-      - -Dbackend-gtk3=enabled
-      - -Ddocs=false
-      - -Dtests=false
-    sources:
-      - type: archive
-        url: https://github.com/flatpak/libportal/archive/0.10.0.tar.gz
-        sha256: e1b6913c6d9015bfa918ace86f82c30940982add97aed9c18cc929c5327054fd
-        x-checker-data:
-          type: anitya
-          project-id: 230124
-          stable-only: true
-          url-template: https://github.com/flatpak/libportal/archive/$version.tar.gz
-
-  - name: com.github.rajsolai.textsnatcher
-    buildsystem: meson
-    sources:
-      - type: git
-        url: https://github.com/muelli/TextSnatcher.git
-        commit: 5d771056436ace7babbbbe259f5abeaa4c1a6103
 
   - name: leptonica
     rm-configure: true
@@ -108,55 +84,45 @@ modules:
           stable-only: true
           url-template: https://github.com/tesseract-ocr/tesseract/archive/$version.tar.gz
 
+  - name: tessdata-best
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 {deu,nld,tur,eng,jpn,rus,fra,ara,chi_sim,spa}.traineddata -t /app/share/tessdata/
+    sources:
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/eng.traineddata
         sha256: 8280aed0782fe27257a68ea10fe7ef324ca0f8d85bd2fd145d1c2b560bcb66ba
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/jpn.traineddata
         sha256: 36bdf9ac823f5911e624c30d0553e890b8abc7c31a65b3ef14da943658c40b79
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/rus.traineddata
         sha256: b617eb6830ffabaaa795dd87ea7fd251adfe9cf0efe05eb9a2e8128b7728d6b6
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/fra.traineddata
         sha256: 907743d98915c91a3906dfbf6e48b97598346698fe53aaa797e1a064ffcac913
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/ara.traineddata
         sha256: ab9d157d8e38ca00e7e39c7d5363a5239e053f5b0dbdb3167dde9d8124335896
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/chi_sim.traineddata
         sha256: 4fef2d1306c8e87616d4d3e4c6c67faf5d44be3342290cf8f2f0f6e3aa7e735b
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/spa.traineddata
         sha256: e2c1ffdad8b30f26c45d4017a9183d3a7f9aa69e59918be4f88b126fac99ab2c
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/tur.traineddata
         sha256: e0c3338dc17503dc7d335a507c9ae01b2b46cfd07561171e1e1ac55d85e8e438
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/nld.traineddata
         sha256: 92e7a1ad4bf8082e268de57c7823316ec024935702c6ed2a1e473b3a071aa733
-        dest: traineddata
       - type: file
         url: https://github.com/tesseract-ocr/tessdata_best/raw/main/deu.traineddata
         sha256: 8407331d6aa0229dc927685c01a7938fc5a641d1a9524f74838cdac599f0d06e
-        dest: traineddata
 
-    post-install:
-      - install -p -D -m 0644 "traineddata"/deu.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/nld.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/tur.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/eng.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/jpn.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/rus.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/fra.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/ara.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/chi_sim.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
-      - install -p -D -m 0644 "traineddata"/spa.traineddata -t "${FLATPAK_DEST}/share/tessdata/";
+  - name: com.github.rajsolai.textsnatcher
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/muelli/TextSnatcher.git
+        commit: 5d771056436ace7babbbbe259f5abeaa4c1a6103
