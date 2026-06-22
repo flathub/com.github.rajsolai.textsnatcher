@@ -11,7 +11,23 @@ finish-args:
   - --socket=wayland
   - --device=dri
   - --system-talk-name=org.freedesktop.Accounts
-
+cleanup:
+  - /lib/cmake
+  - /share/bash-completion
+  - /share/doc
+  - /share/man
+  - /share/zsh
+  - '*.la'
+  - '*.a'
+cleanup-commands:
+  - rm -rf /app/bin/sassc
+  - rm -rf /app/include
+  - rm -rf /app/lib/girepository-1.0
+  - rm -rf /app/lib/pkgconfig
+  - rm -rf /app/share/gir-1.0
+  - rm -rf /app/share/vala
+  - rm -rf /app/lib/libgee*
+  - rm -rf /app/lib/libsass*
 modules:
 
   # Dependency of libbsd
